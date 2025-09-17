@@ -1,5 +1,7 @@
 import React from 'react';
 import { CloudRain, Cloud, Sun, CloudDrizzle, Cog as Fog } from 'lucide-react';
+import { useContext } from 'react';
+import { WeatherContext } from '../context/WeatherContext';
 
 const getWeatherIcon = (condition, size = 20) => {
   const iconProps = { size, className: 'weather-icon' };
@@ -13,7 +15,8 @@ const getWeatherIcon = (condition, size = 20) => {
   }
 };
 
-const HourlyForecast = ({ hourlyData }) => {
+const HourlyForecast = () => {
+  const { hourlyData } = useContext(WeatherContext);
   return (
     <div className="hourly-forecast">
       {hourlyData.map((hour, index) => (

@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { WeatherContext } from '../context/WeatherContext';
 
-const ForecastTabs = ({ activeTab, setActiveTab }) => {
-  const tabs = ['5 days', '14 days', '30 days'];
+const ForecastTabs = () => {
+  const [activeTab, setActiveTab] = useState(5);
+  const {generateDailyData, tabs, setDailyData} = useContext(WeatherContext); // Future: Use context if needed
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    setDailyData([]); // Clear previous data
+    console.log(`Switched to ${tab} forecast`);
+    generateDailyData(tab);
+    // Future: Fetch and display data for the selected tab
+  };
+
+
   return (
     <div className="forecast-header">
       <h2 className="forecast-title">The Next Days Forecast</h2>
@@ -9,10 +21,10 @@ const ForecastTabs = ({ activeTab, setActiveTab }) => {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleTabClick(tab)}
             className={`tab-button ${activeTab === tab ? 'active' : ''}`}
           >
-            {tab}
+            {`${tab} days`}
           </button>
         ))}
       </div>

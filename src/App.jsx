@@ -1,6 +1,6 @@
 import React from 'react';
-import WeatherApp from './components/Weather/WeatherApp';
-import WeatherProvider from './components/context/WeatherContext';
+import WeatherApp from './pages/home/WeatherApp';
+import WeatherProvider from './context/WeatherContext';
 
 function App() {
   return <>

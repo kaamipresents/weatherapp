@@ -1,5 +1,7 @@
 import React from 'react';
 import { CloudRain, Cloud, Sun, CloudDrizzle, Cog as Fog } from 'lucide-react';
+import { useContext } from 'react';
+import { WeatherContext } from '../context/WeatherContext';
 
 const getWeatherIcon = (condition, size = 24) => {
   const iconProps = { size, className: 'weather-icon' };
@@ -13,7 +15,9 @@ const getWeatherIcon = (condition, size = 24) => {
   }
 };
 
-const DailyForecast = ({ dailyData }) => {
+const DailyForecast = () => {
+
+  const { dailyData, weatherData } = useContext(WeatherContext);
   return (
     <div className="daily-forecast">
       {dailyData.map((day, index) => (
@@ -21,13 +25,13 @@ const DailyForecast = ({ dailyData }) => {
           <div className="daily-left">
             {getWeatherIcon(day.condition)}
             <div className="daily-info">
-              <div className="daily-day">{day.day}, {day.date}</div>
-              <div className="daily-description">{day.description}</div>
+              <div className="daily-day">{weatherData?`${day.day}, ${day.date}`:"Location not selected"}</div>
+              <div className="daily-description">{weatherData?day.description:"Select City"}</div>
             </div>
           </div>
           <div className="daily-temps">
-            <div className="temp-low">{day.low}°</div>
-            <div className="temp-high">{day.high}°</div>
+            <div className="temp-low">{weatherData?`${day.low}°`:"°"}</div>
+            <div className="temp-high">{weatherData?`${day.low}°`:"°"}</div>
           </div>
         </div>
       ))}

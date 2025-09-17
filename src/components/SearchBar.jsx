@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./SearchBar.css";
-import { WeatherContext } from "./context/WeatherContext";
+import { WeatherContext } from "../context/WeatherContext";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -8,6 +8,9 @@ const SearchBar = () => {
 
   const fetchLocation = async (e) => {
       e.preventDefault();
+      if (query.trim() === "") {
+        return; // Do not fetch if query is empty
+      }
       try {
     //   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     //   console.log(apiKey);

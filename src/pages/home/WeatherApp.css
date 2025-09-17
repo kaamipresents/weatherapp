@@ -75,7 +75,8 @@
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 32px;
-  height: 100%;
+  /* overflow-y: hidden; */
+  /* height: 80%; */
 }
 
 @media (min-width: 1024px) {
@@ -93,6 +94,7 @@
   display: flex;
   flex-direction: column;
   min-height: 600px;
+  height: 100vh;
 }
 
 /* Header */
@@ -105,6 +107,10 @@
 
 .date-time {
   color: rgba(255, 255, 255, 0.9);
+}
+
+.date-time span{
+  font-size: 16px;
 }
 
 .date, .time {
@@ -150,18 +156,13 @@
 }
 
 .current-temp {
-  font-size: 144px;
+  font-size: 90px;
   font-weight: 300;
   color: white;
   line-height: 0.9;
   margin-bottom: 8px;
 }
 
-@media (min-width: 1024px) {
-  .current-temp {
-    font-size: 180px;
-  }
-}
 
 .wind-info {
   display: flex;
@@ -177,6 +178,7 @@
 
 /* Weather Condition */
 .weather-condition {
+  /* font-size: 30px; */
   text-align: center;
   margin-bottom: 48px;
   flex: 1;
@@ -186,18 +188,18 @@
 }
 
 .condition-title {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.9);
   letter-spacing: 2px;
   margin: 0;
 }
-
+/* 
 @media (min-width: 1024px) {
   .condition-title {
     font-size: 72px;
   }
-}
+} */
 
 /* Hourly Forecast */
 .hourly-forecast {
@@ -238,6 +240,7 @@
 /* Forecast Panel */
 .forecast-panel {
   grid-column: 1;
+  overflow-y: hidden;
 }
 
 @media (min-width: 1024px) {
@@ -250,6 +253,8 @@
   display: flex;
   flex-direction: column;
   min-height: 600px;
+  overflow-y: hidden;
+  height: 100vh;
 }
 
 /* Forecast Header */
@@ -302,6 +307,7 @@
   flex-direction: column;
   gap: 16px;
   flex: 1;
+  overflow: auto;
 }
 
 .daily-item {
