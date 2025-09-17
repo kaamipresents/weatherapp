@@ -4,14 +4,7 @@ import { WeatherContext } from "./context/WeatherContext";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
-  const {setLocation, setTemperature, setWind, setCondition} = useContext(WeatherContext);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (!query) return;
-//     onSearch(query);
-//     setQuery("");
-//   };
+  const {setWeatherData} = useContext(WeatherContext);
 
   const fetchLocation = async (e) => {
       e.preventDefault();
@@ -19,34 +12,18 @@ const SearchBar = () => {
     //   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     //   console.log(apiKey);
       const response = await fetch(
-        // `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${apiKey}`
         `https://api.weatherapi.com/v1/current.json?key=68493baf75e5465585c132951251709&q=${query}&aqi=no`
       );
       const data = await response.json();
       console.log(data);
-      setLocation(`${data.location.name}, ${data.location.region}, ${data.location.country}`);
+      setWeatherData(data);
       console.log(data.current.temp_c);
-      setTemperature(data.current.temp_c);
-      setWind(data.current.wind_kph);
-      setCondition(data.current.condition.text);
       setQuery("");
-    //   fetchWeather(data.location.lat,data.location.lon,apiKey);
     } catch (error) {
       console.error("Error fetching location:", error);
     }
   };
 
-//   const fetchWeather = async (latitude, longitude, apiKey) => {
-//     try {
-//       const response = await fetch(
-//         `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
-//       );
-//       const data = await response.json();
-//       console.log(data);
-//     } catch (error) {
-//       console.error("Error fetching weather:", error);
-//     }
-//   }
 
   return (
     <form onSubmit={fetchLocation} className="search-bar">
