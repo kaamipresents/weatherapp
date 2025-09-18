@@ -23,7 +23,7 @@ const DailyForecast = () => {
       {dailyData.map((day, index) => (
         <div key={index} className="daily-item">
           <div className="daily-left">
-            {getWeatherIcon(day.condition)}
+            {getWeatherIcon(weatherData?day.condition:"rain", 30)}
             <div className="daily-info">
               <div className="daily-day">{weatherData?`${day.day}, ${day.date}`:"Location not selected"}</div>
               <div className="daily-description">{weatherData?day.description:"Select City"}</div>

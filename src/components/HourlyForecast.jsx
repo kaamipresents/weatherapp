@@ -16,14 +16,14 @@ const getWeatherIcon = (condition, size = 20) => {
 };
 
 const HourlyForecast = () => {
-  const { hourlyData } = useContext(WeatherContext);
+  const { hourlyData, weatherData } = useContext(WeatherContext);
   return (
     <div className="hourly-forecast">
       {hourlyData.map((hour, index) => (
         <div key={index} className="hourly-item">
-          <div className="hourly-time">{hour.time}</div>
-          <div className="hourly-icon">{getWeatherIcon(hour.condition)}</div>
-          <div className="hourly-temp">{hour.temperature}°C</div>
+          <div className="hourly-time">{weatherData?hour.time:"00:00"}</div>
+          <div className="hourly-icon">{getWeatherIcon(weatherData?hour.condition:"rain")}</div>
+          <div className="hourly-temp">{weatherData?hour.temperature:0}°C</div>
         </div>
       ))}
     </div>

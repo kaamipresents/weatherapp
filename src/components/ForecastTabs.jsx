@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
 
 const ForecastTabs = () => {
-  const [activeTab, setActiveTab] = useState(5);
-  const {generateDailyData, tabs, setDailyData} = useContext(WeatherContext); // Future: Use context if needed
+
+  const {generateDailyData, tabs, setDailyData, activeTab, setActiveTab} = useContext(WeatherContext); // Future: Use context if needed
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
