@@ -11,7 +11,7 @@ const SearchBar = () => {
   if (query.trim() === "") return;
 
   try {
-    const response = await fetch(`/api/weather?city=${query}`);
+    const response = await fetch(`http://localhost:5000/weather?city=${query}`);
     const data = await response.json();
     console.log(data);
     setWeatherData(data);
