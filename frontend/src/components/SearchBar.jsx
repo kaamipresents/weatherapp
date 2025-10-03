@@ -7,25 +7,20 @@ const SearchBar = () => {
   const {setWeatherData} = useContext(WeatherContext);
 
   const fetchLocation = async (e) => {
-      e.preventDefault();
-      if (query.trim() === "") {
-        return; // Do not fetch if query is empty
-      }
-      try {
-    //   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-    //   console.log(apiKey);
-      const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=68493baf75e5465585c132951251709&q=${query}&aqi=no`
-      );
-      const data = await response.json();
-      console.log(data);
-      setWeatherData(data);
-      console.log(data.current.temp_c);
-      setQuery("");
-    } catch (error) {
-      console.error("Error fetching location:", error);
-    }
-  };
+  e.preventDefault();
+  if (query.trim() === "") return;
+
+  try {
+    const response = await fetch(`http://localhost:5000/weather?city=${query}`);
+    const data = await response.json();
+    console.log(data);
+    setWeatherData(data);
+    setQuery("");
+  } catch (error) {
+    console.error("Error fetching location:", error);
+  }
+};
+
 
 
   return (
