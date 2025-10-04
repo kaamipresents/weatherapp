@@ -10,15 +10,25 @@ const SearchBar = () => {
   e.preventDefault();
   if (query.trim() === "") return;
 
+  // try {
+  //   const response = await fetch(`http://localhost:5000/weather?city=${query}`);
+  //   const data = await response.json();
+  //   // console.log(data);
+  //   setWeatherData(data);
+  //   setQuery("");
+  // } catch (error) {
+  //   console.error("Error fetching location:", error);
+  // }
+
   try {
-    const response = await fetch(`http://localhost:5000/weather?city=${query}`);
-    const data = await response.json();
-    console.log(data);
-    setWeatherData(data);
-    setQuery("");
-  } catch (error) {
-    console.error("Error fetching location:", error);
-  }
+  const response = await fetch(`/api/weather?city=${query}`); // ✅ works in Vercel
+  const data = await response.json();
+  setWeatherData(data);
+  setQuery("");
+} catch (error) {
+  console.error("Error fetching location:", error);
+}
+
 };
 
 
